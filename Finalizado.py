@@ -13,7 +13,7 @@ client = commands.Bot(command_prefix='!', intents=intents)
 async def testa(message):
     if message.author == client.user:
         return
-    # Nesse formato sempre q a mensagem começar com a palavra entre '' o bot irá responder a frase escrita no await
+    # Nesse formato sempre q a mensagem começar com a palavra entre '' o bot irá responder a frase escrita no await.
 
     if message.content.startswith('Olá'):
         await message.channel.send('Que SATISFAÇÃO, ASPIRA!')
@@ -182,6 +182,7 @@ def check_queue(ctx, id):
         source = filas[id].pop(0)
         player = voice.play(source, after=lambda x=None: check_queue(ctx, ctx.message.guild.id))
 
+#aqui o bot vai se juntar ao canal de voz e já reproduzir o arquivo 'seuarquivo.mp3'.
 
 @client.command(pass_context=True)
 async def QAP(ctx):
