@@ -2,6 +2,9 @@ import random
 import discord
 from discord import FFmpegPCMAudio
 from discord.ext import commands
+from io import BytesIO
+from PIL import Image
+#pro PIL funcionar tem q instalar o pillow
 
 intents = discord.Intents.default()
 intents.members = True
@@ -13,7 +16,8 @@ client = commands.Bot(command_prefix='!', intents=intents)
 async def testa(message):
     if message.author == client.user:
         return
-    # Nesse formato sempre q a mensagem começar com a palavra entre '' o bot irá responder a frase escrita no await.
+
+   # Nesse formato sempre q a mensagem começar com a palavra entre '' o bot irá responder a frase escrita no await.
 
     if message.content.startswith('Olá'):
         await message.channel.send('Que SATISFAÇÃO, ASPIRA!')
@@ -236,6 +240,24 @@ async def stop(ctx):
     voice = discord.utils.get(client.voice_clients, guild=ctx.guild)
     voice.stop()
 
+#esse comando pega um arquivo de imagem salvo, adiciona a imagem do avatar da pessoa marcada cria um novo arquivo
+# e o envia editado, no caso a imagem escolhida foi a de procurado, daí fica o avatar da pessoa c o fundo de procurado
+# o resize se refere ao tamanho da foto do usuario escolhido e os numeros do paste se referem a posição q a imagem vai ser colada
+
+@client.command()
+async def wanted(ctx, user: discord.Member = None):
+    if user is None:
+        user = ctx.author
+
+    wanted = Image.open("Procurado1.jpg")
+    asset = user.avatar_url_as(size=128)
+    data = BytesIO(await asset.read())
+    pfp = Image.open(data)
+    pfp = pfp.resize((149, 148))
+    wanted.paste(pfp, (102, 171))
+    wanted.save("cara.jpg")
+    await ctx.send(file=discord.File("cara.jpg"))
+
 
 # por fim coloco o aviso q o bot está online somente no terminal, gosto de colocá-lo no final de
 # td para checar se está tem algum erro e só depois ficar online.
@@ -245,4 +267,4 @@ async def on_ready():
     print('{0.user} Tá on!!!!'.format(client))
 
 
-client.run("SEU TOKEN AQUI")
+client.run("BOT TOKEN AQUI")
