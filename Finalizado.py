@@ -1,10 +1,12 @@
+#Faça importação/instalação de todos os comandos descritos abaixo
 import random
 import discord
 from discord import FFmpegPCMAudio
 from discord.ext import commands
 from io import BytesIO
 from PIL import Image
-#pro PIL funcionar tem q instalar o pillow
+#Pro PIL funcionar tem q instalar o pillow no terminal escreva pip install pillow
+
 
 intents = discord.Intents.default()
 intents.members = True
@@ -12,12 +14,10 @@ intents.members = True
 client = commands.Bot(command_prefix='!', intents=intents)
 
 
-@client.listen("on_message")
+@client.listen("on_message") # Nesse formato sempre q a mensagem começar com a palavra entre '' o bot irá responder a frase escrita no await.
 async def testa(message):
     if message.author == client.user:
         return
-
-   # Nesse formato sempre q a mensagem começar com a palavra entre '' o bot irá responder a frase escrita no await.
 
     if message.content.startswith('Olá'):
         await message.channel.send('Que SATISFAÇÃO, ASPIRA!')
@@ -155,10 +155,10 @@ async def ficha(ctx, user: discord.Member = None):
     await ctx.channel.send(embed=st)
 
 
-# Aqui o bot vai utilizar os canais de voz e reproduzirá arquivos .mp3 q estejam na mesma pasta do arquivo python
-# O QAP(no código Q = Na escuta) e o QAR = desligar farão com q o bot se junte a vc no canal e saia do canal
-# O play, pause, resume e stop executam o padrão, toca o arquivo, pausa o arquivo,
-# volta a tocar o arquivo do momento q pausou e para o arquivo e não volta mais da onde parou
+# Abaixo o bot vai utilizar os canais de voz e reproduzirá arquivos .mp3 q estejam na mesma pasta do arquivo python
+# O QAP(no código Q é = Na escuta) e o QAR = desligar, farão com q o bot se junte a vc no canal e saia do canal
+# O play, pause, resume e stop executam o padrão, toca o arquivo, pausa o arquivo, # volta a tocar o arquivo do momento
+# q pausou, para o arquivo e não volta mais da onde parou.
 # O fila monta uma playlist.
 
 filas = {}
@@ -186,7 +186,9 @@ def check_queue(ctx, id):
         source = filas[id].pop(0)
         player = voice.play(source, after=lambda x=None: check_queue(ctx, ctx.message.guild.id))
 
-#aqui o bot vai se juntar ao canal de voz e já reproduzir o arquivo 'seuarquivo.mp3'.
+#aqui o bot vai se juntar ao canal de voz e já reproduzir o arquivo 'seuarquivo.mp3'. Se quiser q ele não fale nada,
+# exclua as linhas source e player e apague o voice...ficando apenas o channel = ctx.author.voice.channel e o await channel.connect()
+
 
 @client.command(pass_context=True)
 async def QAP(ctx):
@@ -240,7 +242,7 @@ async def stop(ctx):
     voice = discord.utils.get(client.voice_clients, guild=ctx.guild)
     voice.stop()
 
-#esse comando pega um arquivo de imagem salvo, adiciona a imagem do avatar da pessoa marcada cria um novo arquivo
+#O comando abaixo pega um arquivo de imagem salvo, adiciona a imagem do avatar da pessoa marcada cria um novo arquivo
 # e o envia editado, no caso a imagem escolhida foi a de procurado, daí fica o avatar da pessoa c o fundo de procurado
 # o resize se refere ao tamanho da foto do usuario escolhido e os numeros do paste se referem a posição q a imagem vai ser colada
 
@@ -267,4 +269,4 @@ async def on_ready():
     print('{0.user} Tá on!!!!'.format(client))
 
 
-client.run("BOT TOKEN AQUI")
+client.run("OTY0NjM3MjM0MDA1NDQyNTYw.Ylnibg.3p0iD3c6zxFDdPDkx4jdBKOi_A8")
