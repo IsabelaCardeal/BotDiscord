@@ -269,4 +269,4 @@ async def on_ready():
     print('{0.user} Tá on!!!!'.format(client))
 
 
-client.run("OTY0NjM3MjM0MDA1NDQyNTYw.Ylnibg.3p0iD3c6zxFDdPDkx4jdBKOi_A8")
+client.run("SEU TOKEN AQUI")
