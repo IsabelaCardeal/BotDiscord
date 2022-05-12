@@ -8,10 +8,7 @@ from PIL import Image
 #Pro PIL funcionar tem q instalar o pillow no terminal escreva pip install pillow
 
 
-intents = discord.Intents.default()
-intents.members = True
-
-client = commands.Bot(command_prefix='!', intents=intents)
+client = commands.Bot(command_prefix='!')
 
 
 @client.listen("on_message") # Nesse formato sempre q a mensagem começar com a palavra entre '' o bot irá responder a frase escrita no await.
@@ -28,7 +25,10 @@ async def testa(message):
     if message.content.startswith('marreco'):
         await message.channel.send('Que PORRA é essa marreco??')
 
-    if message.content.startswith('06'):
+    if message.content.startswith('08'):
+        await message.channel.send('Xerife, O SENHOR É UM FANFARRÃO!!')
+
+    if message.content == '06':
         await message.channel.send('Xerife, O SENHOR É UM FANFARRÃO!!')
 
     if message.content.startswith('F'):
@@ -164,7 +164,7 @@ async def ficha(ctx, user: discord.Member = None):
 filas = {}
 
 
-@client.command(pass_context=True)
+@client.command()
 async def fila(ctx, arg):
     voice = ctx.guild.voice_client
     song = arg + '.mp3'
@@ -190,7 +190,7 @@ def check_queue(ctx, id):
 # exclua as linhas source e player e apague o voice...ficando apenas o channel = ctx.author.voice.channel e o await channel.connect()
 
 
-@client.command(pass_context=True)
+@client.command()
 async def QAP(ctx):
     if ctx.author.voice:
         channel = ctx.author.voice.channel
@@ -202,7 +202,7 @@ async def QAP(ctx):
         await ctx.send('Você nem tá no canal certo o doida(o)!!')
 
 
-@client.command(pass_context=True)
+@client.command()
 async def QAR(ctx):
     if ctx.voice_client:
         await ctx.send('Tô vazando, vlw, flws!!')
@@ -211,7 +211,7 @@ async def QAR(ctx):
         await ctx.send('Ainda bem que eu nem estou aí!!')
 
 
-@client.command(pass_context=True)
+@client.command()
 async def play(ctx, arg):
     voice = ctx.guild.voice_client
     song = arg + '.mp3'
@@ -219,7 +219,7 @@ async def play(ctx, arg):
     player = voice.play(source, after=lambda x=None: check_queue(ctx, ctx.message.guild.id))
 
 
-@client.command(pass_context=True)
+@client.command()
 async def pause(ctx):
     voice = discord.utils.get(client.voice_clients, guild=ctx.guild)
     if voice.is_playing():
@@ -228,7 +228,7 @@ async def pause(ctx):
         await ctx.send('Não tem nada tocando no momento!')
 
 
-@client.command(pass_context=True)
+@client.command()
 async def resume(ctx):
     voice = discord.utils.get(client.voice_clients, guild=ctx.guild)
     if voice.is_paused():
@@ -237,7 +237,7 @@ async def resume(ctx):
         await ctx.send('Não tem nada pausado!')
 
 
-@client.command(pass_context=True)
+@client.command()
 async def stop(ctx):
     voice = discord.utils.get(client.voice_clients, guild=ctx.guild)
     voice.stop()
@@ -269,4 +269,4 @@ async def on_ready():
     print('{0.user} Tá on!!!!'.format(client))
 
 
-client.run("SEU TOKEN AQUI")
+client.run("SEU TOKEN AQUI!")
