@@ -30,7 +30,7 @@ No meu caso eu estou usando o Python 3.6 e a IDE PyCharm modo gratuito(q é o da
 Agora nós vamos para o código em si, no meu caso, vou compartilhar o meu Bot 02, ele é inspirado no Capitão Fábio do filme Tropa de Elite, então alguns comandos tem referência com o personagem e com a profissão policial.
 Segue o link do bot:
 
-### [Bot 02](https://github.com/IsabelaCardeal/BotDiscord/blob/master/Finalizado.py) :policeman:
+### [Bot 02](https://github.com/IsabelaCardeal/BotDiscord/blob/master/Bot02.py) :policeman:
 
 Eu já deixei alguns comentários e explicações no arquivo. Mas logo abaixo vou colocar algumas explicações e variações possíveis.
 
