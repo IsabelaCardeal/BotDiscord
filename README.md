@@ -27,14 +27,18 @@ No meu caso eu estou usando o Python 3.6 e a IDE PyCharm modo gratuito(q é o da
 * [Tutorial instalação e configuração Python e Pycharm](https://www.devmedia.com.br/instalacao-do-python/40643#:~:text=Na%20tela%20inicial%20do%20PyCharm,e%20depois%20em%20%E2%80%9CSettings%E2%80%9D.&text=Na%20nova%20tela%20da%20Figura,os%20nossos%20c%C3%B3digos%20em%20Python.)
 
 ## Terceira Parte
-Agora nós vamos para o código em si, no meu caso, vou compartilhar o meu Bot 02, ele é inspirado no Capitão Fábio do filme Tropa de Elite, então alguns comandos tem referência com o personagem e com a profissão policial.
-Segue o link do bot:
+Agora nós vamos para o código em si, no meu caso, vou compartilhar o meu Bot 02, ele é inspirado no Capitão Fábio do filme Tropa de Elite, então alguns comandos tem referência com o personagem e com a profissão policial e o Bot Falador, ele só funciona em um canal de voz, tanto reproduz audios pré gravados como os do site myinstant(https://www.myinstants.com/pt/index/br/), como músicas baixadas no seu pc e também transforma a sua frase em áudio com a voz do Google.
+Segue os links dos comandos dos bots:
 
-### [Bot 02](https://github.com/IsabelaCardeal/BotDiscord/blob/master/Bot02.py) :policeman:
+### [Comandos Bot 02](https://github.com/IsabelaCardeal/BotDiscord/blob/master/Bot02.py) :policeman:
+### [Comandos Bot Falador](https://github.com/IsabelaCardeal/BotDiscord/blob/master/Falador.py) :singer:
 
-Eu já deixei alguns comentários e explicações no arquivo. Mas logo abaixo vou colocar algumas explicações e variações possíveis.
+Eu já deixei alguns comentários e explicações nos arquivos. Mas logo abaixo vou colocar algumas explicações e variações possíveis.
 
-Sobre a diferença em usar o comando com prefixo e sem, mtas pessoas preferem utilizar o prefixo para que não ocorra a interferência do bot em uma conversa ou pergunta ou frase no chat.
+<details>
+<summary><b>BOT 02</b></summary> 
+<br/>
+Vou começar explicando a diferença em usar o comando com prefixo e sem, mtas pessoas preferem utilizar o prefixo para que não ocorra a interferência do bot em uma conversa ou pergunta ou frase no chat.
 
 OBS.: Como o meu caso é um personagem eu botei alguns de propósito onde ele se "intromete" na conversa.
 
@@ -172,5 +176,5 @@ Bom esses foram alguns exemplos básicos, eu sou bem iniciante e não tenho tant
 
 ![Satis](https://user-images.githubusercontent.com/102563782/167547545-c6e99b05-0e61-4096-b7fd-3240ab76b46c.jpg)
 
-
+</details>
 
