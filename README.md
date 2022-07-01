@@ -181,9 +181,10 @@ Bom esses foram alguns exemplos básicos, eu sou bem iniciante e não tenho tant
 <details>    
 <summary><b>BOT FALADOR</b></summary>
 <br/>
+    
 Para o Bot reproduzir arquivos de áudio eu segui o passo a passo desse vídeo: https://www.youtube.com/watch?v=M_6_GbDc39Q, instalando o FFmpeg pelo site deles: https://ffmpeg.org/ e colocando a pasta com os .exe no diretório /C:, nos meus testes, arquivos .mp3, .wav e .ogg(áudios do whatsapp) reproduziram  de forma normal.
     
-
+   
 Primeiro vamos fazer com que o bot se junte a nós, por isso temos que já estar em um canal de voz para que ele te siga. Nesse comando nós podemos fazer ele básico, aonde ele só se junta a vc no canal de voz, ou com um som adicional sempre q ele se junta a vc no canal. Lembrando que todos os arquivos de audio devem ficar na mesma pasta que o arquivo do Bot.
     
 Comando Básico:    
@@ -254,7 +255,8 @@ Aproveitando q esse comando primeiro salva a frase escrita e dps reproduz, vc po
 @client.command()
 async def frase(ctx):
     frases = \
-        ['frase1.mp3', 'frase2.mp3', 'frase3.mp3', 'frase4.mp3', 'frase5.mp3', 'frase6.mp3', 'frase7.mp3', 'frase8.mp3', 'frase9.mp3', 'frase10.mp3']
+        ['frase1.mp3', 'frase2.mp3', 'frase3.mp3', 'frase4.mp3', 'frase5.mp3', 'frase6.mp3', 'frase7.mp3',
+         'frase8.mp3', 'frase9.mp3', 'frase10.mp3']
 
     voice = ctx.guild.voice_client
     ria = random.choice(frases)
