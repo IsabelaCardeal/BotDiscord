@@ -188,13 +188,13 @@ Primeiro vamos fazer com que o bot se junte a nós, por isso temos que já estar
     
 Comando Básico:    
 ```
-@client.command(pass_context=True)
+@client.command()
 async def junto(ctx):
     if (ctx.author.voice):
         channel = ctx.author.voice.channel
         await channel.connect()
     else:
-        await ctx.send('Me erra, você nem tá no canal o doida(o)!!') 
+        await ctx.send('Você nem tá no canal o doida(o)!!') 
 ```
 Comando com áudio para tocar sempre q o bot entrar no canal de voz:
 ```
