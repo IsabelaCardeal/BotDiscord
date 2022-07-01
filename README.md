@@ -178,3 +178,95 @@ Bom esses foram alguns exemplos básicos, eu sou bem iniciante e não tenho tant
 
 </details>
 
+<details>    
+<summary><b>BOT FALADOR</b></summary>
+<br/>
+Para o Bot reproduzir arquivos de áudio eu segui o passo a passo desse vídeo: https://www.youtube.com/watch?v=M_6_GbDc39Q, instalando o FFmpeg pelo site deles: https://ffmpeg.org/ e colocando a pasta com os .exe no diretório /C:, nos meus testes, arquivos .mp3, .wav e .ogg(áudios do whatsapp) reproduziram  de forma normal.
+    
+
+Primeiro vamos fazer com que o bot se junte a nós, por isso temos que já estar em um canal de voz para que ele te siga. Nesse comando nós podemos fazer ele básico, aonde ele só se junta a vc no canal de voz, ou com um som adicional sempre q ele se junta a vc no canal. Lembrando que todos os arquivos de audio devem ficar na mesma pasta que o arquivo do Bot.
+    
+Comando Básico:    
+```
+@client.command(pass_context=True)
+async def junto(ctx):
+    if (ctx.author.voice):
+        channel = ctx.author.voice.channel
+        await channel.connect()
+    else:
+        await ctx.send('Me erra, você nem tá no canal o doida(o)!!') 
+```
+Comando com áudio para tocar sempre q o bot entrar no canal de voz:
+```
+@client.command()
+async def junto(ctx):
+    if ctx.author.voice:
+        channel = ctx.author.voice.channel
+        voice = await channel.connect()
+        source = FFmpegPCMAudio('cheguei.mp3')
+        player = voice.play(source)
+    else:
+        await ctx.send('Você nem tá no canal certo o doida(o)!!')   
+```
+PS.: Com esse comando se vc puxar o bot, trocar de canal de voz e tentar puxar novamente o bot, ele não irá te seguir, vc tem q dar o disconnect nele e "puxá-lo" novamente.
+
+Os comandos seguintes são autoexplicativos, !fila cria a fila(ele vai botar o pedido na fila mas se não tiver nada tocando ele não vai dar o play!!!), precisa ter dado o comando !play para aí "acionar" a fila, sendo assim o !play toca a música, o !pause para a música e o !resume volta a tocar a música no momento do pause, o !stop para e tira a música, o !resume não funciona dps do stop.
+
+Agora vou explicar sobre o gTTs(Google text-to-speech), no site da documentação tem todas as línguas e "sotaques" disponíveis, por padrão o sotaque do pt é o português brasileiro, por isso só precisei utilizar o lang="pt".
+Documentação com as línguas e sotaques disponíveis: https://gtts.readthedocs.io/en/latest/module.html#localized-accents
+    
+Site onde achei a solução para o comando gTTs funcionar c o bot: https://localcoder.org/how-to-play-gtts-mp3-file-in-discord-voice-channel-the-user-is-in-discord-py    
+    
+```
+@client.command()
+async def fala(ctx, *, text=None):
+    if not text:
+        await ctx.send(f"Hey {ctx.author.mention}, Eu preciso que vc escreva o q eu tenho q dizer, INFERNO!")
+        return
+    vc = ctx.voice_client
+    if not vc:
+        # Primeiro tem q dar join para o bot funcionar
+        await ctx.send("Me puxa pro canal antes queridinha(o).")
+        return
+    # Abaixo prepara o texto, a linguagem a ser usada e salva
+    tts = gTTS(text=text, lang="pt")
+    tts.save("frase.mp3")
+    try:
+        vc.play(discord.FFmpegPCMAudio('frase.mp3'), after=lambda e: print(f"Terminei de falar: {e}"))
+        # Coloca o volume em 1
+        vc.source = discord.PCMVolumeTransformer(vc.source)
+        vc.source.volume = 1
+        # Aqui é pra responder caso uma exceção ocorra
+    except ClientException as e:
+        await ctx.send(f"A client exception occured:\n`{e}`")
+    except TypeError as e:
+        await ctx.send(f"TypeError exception:\n`{e}`")
+    except OpusNotLoaded as e:
+        await ctx.send(f"OpusNotLoaded exception: \n`{e}`")
+```
+    
+Para trocar a língua basta alterar o lang...e para adicionar o sotaque escreva dps do lang: tld="..." 
+    
+PS.: Vc pode escrever o texto em francês, espanhol, alemão com a língua falada em português-br, porém o bot vai reproduzir como se fosse uma brasileira falando outras línguas, vai errar a pronúncia da acentuação e etc.
+    
+Aproveitando q esse comando primeiro salva a frase escrita e dps reproduz, vc pode criar e salvar frases aleatórias(como pensamento do dia, piadas, frases de filmes e etc), salvá-las e ir trocando o nome do arquivo, dps é só botar o comando com os arquivos salvos, assim como fiz no exemplo a seguir:
+```
+@client.command()
+async def frase(ctx):
+    frases = \
+        ['frase1.mp3', 'frase2.mp3', 'frase3.mp3', 'frase4.mp3', 'frase5.mp3', 'frase6.mp3', 'frase7.mp3', 'frase8.mp3', 'frase9.mp3', 'frase10.mp3']
+
+    voice = ctx.guild.voice_client
+    ria = random.choice(frases)
+    player = voice.play(discord.FFmpegPCMAudio(ria))
+```
+Eu peguei 10 frases/pensamentos do dia e fui salvando, dps botei para reproduzir no random choice, mas vc pode nomear um comando para cada fala ou botar mto mais. 
+    
+ 
+Por fim o !leave tira o bot do canal de voz, com isso para trocar ele de canal basta dar o !leave e dps o !join.
+    
+E é isso...aproveite, divirta-se!!!
+<p align="center">  
+<img width="340" height="340" src="https://media.giphy.com/media/L3crA8hi8CdRyxZaSY/giphy.gif">
+<p/> 
+</details>
